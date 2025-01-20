@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | BangkrajaoMusuem</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
+    <script>
+        function adjustCanvasForDevice() {
+            var canvas = document.querySelector("#unity-canvas");
+
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                // Mobile: Adjust Canvas to Full Screen
+                var meta = document.createElement('meta');
+                meta.name = 'viewport';
+                meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+                document.getElementsByTagName('head')[0].appendChild(meta);
+
+                document.querySelector("#unity-container").className = "unity-mobile";
+                canvas.className = "unity-mobile";
+                canvas.style.width = "100%";
+                canvas.style.height = "100%";
+            } else {
+                // Desktop: Make Canvas Responsive
+                canvas.style.width = "100%";
+                canvas.style.height = "100%";
+            }
+        }
+    </script>
+</head>
+<body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+        <canvas id="unity-canvas" width=1920 height=1080 tabindex="-1"></canvas>
+        <div id="unity-loading-bar">
+            <div id="unity-logo"></div>
+            <div id="unity-progress-bar-empty">
+                <div id="unity-progress-bar-full"></div>
+            </div>
         </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">BangkrajaoMusuem</div>
-      </div>
+        <div id="unity-warning"> </div>
+        <div id="unity-footer">
+            <div id="unity-logo-title-footer"></div>
+            <div id="unity-fullscreen-button"></div>
+            <div id="unity-build-title">BangkrajaoMusuem</div>
+        </div>
     </div>
     <script>
       var canvas = document.querySelector("#unity-canvas");
@@ -123,5 +145,5 @@
       document.body.appendChild(script);
 
     </script>
-  </body>
+</body>
 </html>
